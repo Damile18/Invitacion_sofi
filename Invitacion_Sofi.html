@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Invitación Premium | Sofia Nahomi Ordoñez Mejia</title>
+<!-- Google Fonts: Romántica + Elegante -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #fef7f0;
+    font-family: 'Poppins', sans-serif;
+    color: #4a3b2c;
+    overflow-x: hidden;
+}
+
+/* PANTALLA INICIAL - SOBRE CENTRADO PERFECTO */
+#welcome {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 20% 30%, #fef9f2, #f5ede2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(2px);
+}
+
+.envelope-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* NOMBRE ELEGANTE con degradado dorado y cursiva */
+.name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.2rem;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #e8bc7e, #d4a06a, #c28a4a);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* SOBRE ESTILO PREMIUM */
+.envelope {
+    width: 420px;
+    height: 280px;
+    position: relative;
+    cursor: pointer;
+    background: linear-gradient(115deg, #f8f0e4 0%, #ecdbba 45%, #f5e8d6 100%);
+    border-radius: 22px;
+    box-shadow: 0 35px 50px -20px rgba(0,0,0,0.35), 0 0 0 1px rgba(209, 169, 96, 0.4) inset, 0 0 0 3px rgba(255,245,225,0.7) inset;
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+.envelope:hover {
+    transform: scale(1.02);
+    box-shadow: 0 40px 55px -18px rgba(0,0,0,0.4);
+}
+
+.flap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(125deg, #f5ebdd, #ebddcb, #f4e5d3);
+    clip-path: polygon(0 0, 100% 0, 50% 52%);
+    border-radius: 22px 22px 0 0;
+    transform-origin: top;
+    transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 6;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.letter {
+    position: absolute;
+    width: 92%;
+    height: 88%;
+    background: #fffcf7;
+    bottom: 5%;
+    left: 4%;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 1px 8px rgba(0,0,0,0.02), 0 10px 20px rgba(0,0,0,0.1);
+    border: 1px solid #eeddc5;
+    font-family: 'Playfair Display', serif;
+}
+
+.letter h2 {
+    font-size: 2.4rem;
+    color: #bf8f50;
+    font-family: 'Great Vibes', cursive;
+    font-weight: normal;
+}
+
+.letter p {
+    font-size: 1rem;
+    color: #9b7b56;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/* SELLO DE CERA CON "S" */
+.seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #efc67a, #c28a3e, #9b632c);
+    box-shadow: 0 12px 22px rgba(0,0,0,0.3), 0 0 0 6px rgba(255, 235, 190, 0.7), 0 0 0 9px rgba(175, 125, 55, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 60px;
+    color: #fff5e2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    z-index: 15;
+    transition: all 0.4s ease;
+    letter-spacing: 2px;
+}
+
+.seal::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 45%, rgba(255,215,130,0.5) 2%, transparent 70%);
+    pointer-events: none;
+}
+
+.romantic-text {
+    margin-top: 28px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.7rem;
+    color: #c7924e;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    background: rgba(245, 235, 220, 0.6);
+    padding: 6px 22px;
+    border-radius: 60px;
+    backdrop-filter: blur(4px);
+    display: inline-block;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+.envelope.open .seal {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: opacity 0.5s ease, transform 0.6s ease;
+    pointer-events: none;
+}
+
+#main-content {
+    background: #fef8f0;
+    display: none;
+}
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(145deg, #fcf5ea 20%, #f6ecdf);
+    text-align: center;
+    border-bottom: 1px solid #e9d9c6;
+}
+
+.hero h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    color: #bc8750;
+    font-weight: normal;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    font-family: 'Playfair Display', serif;
+    color: #977b54;
+    letter-spacing: 2px;
+}
+
+section {
+    padding: 70px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #fffcf7;
+    border-radius: 48px;
+    padding: 45px 35px;
+    max-width: 780px;
+    margin: 0 auto;
+    box-shadow: 0 25px 45px -12px rgba(67, 44, 18, 0.15);
+    border: 1px solid #eedbba;
+}
+
+.card h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.6rem;
+    color: #bf8a4b;
+    margin-bottom: 25px;
+    font-weight: normal;
+}
+
+/* REPRODUCTOR DE MÚSICA ESTILO PREMIUM */
+.music-premium-card {
+    background: linear-gradient(145deg, #fff9f0, #fff4e8);
+    border-radius: 70px;
+    padding: 20px 30px;
+    max-width: 480px;
+    margin: 30px auto 20px;
+    box-shadow: 0 15px 35px rgba(158, 110, 48, 0.12);
+    border: 1px solid #f3e2ca;
+    text-align: center;
+}
+
+.music-premium-card .music-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, #dcb072, #c28a44);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-weight: normal;
+    display: inline-block;
+}
+
+.audio-player-custom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    background: #ffffffc9;
+    backdrop-filter: blur(4px);
+    padding: 8px 20px;
+    border-radius: 60px;
+    border: 1px solid #eed8bc;
+}
+
+.btn-play-circle {
+    background: linear-gradient(145deg, #e9c48b, #d9a857);
+    border: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 6px 14px rgba(185, 125, 45, 0.3);
+    color: white;
+    font-size: 1.6rem;
+}
+.btn-play-circle:hover {
+    transform: scale(1.05);
+}
+
+.timeline-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="range"].song-slider {
+    flex: 1;
+    height: 4px;
+    -webkit-appearance: none;
+    background: #eeddc5;
+    border-radius: 10px;
+    outline: none;
+}
+input[type="range"].song-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #d9a457;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.current-time, .duration-time {
+    font-size: 0.8rem;
+    font-family: monospace;
+    color: #b47c3c;
+    font-weight: 500;
+}
+
+/* ========== GALERÍA CON MOVIMIENTO Y ANIMACIONES ========== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    max-width: 1100px;
+    margin: 40px auto 0;
+    perspective: 800px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 32px;
+    box-shadow: 0 20px 30px -12px rgba(0,0,0,0.25);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    cursor: pointer;
+    transform-style: preserve-3d;
+    animation: floatGallery 5s ease-in-out infinite;
+    animation-delay: calc(var(--order, 0) * 0.2s);
+}
+
+/* Animación de flotación suave para cada imagen */
+@keyframes floatGallery {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(0.8deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+.gallery-item:nth-child(1) { --order: 0; animation-duration: 4.2s; }
+.gallery-item:nth-child(2) { --order: 1; animation-duration: 5s; }
+.gallery-item:nth-child(3) { --order: 2; animation-duration: 4.6s; }
+
+.gallery-item:hover {
+    transform: scale(1.03) translateY(-8px);
+    box-shadow: 0 28px 38px -12px rgba(0,0,0,0.35);
+    animation-play-state: paused;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease-out, filter 0.4s ease;
+    border-radius: 32px;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08) rotate(1deg);
+    filter: brightness(1.02) contrast(1.05);
+}
+
+/* Efecto de brillo y marco elegante al pasar el mouse */
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    box-shadow: inset 0 0 0 0px rgba(210, 170, 100, 0);
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.gallery-item:hover::after {
+    box-shadow: inset 0 0 0 4px rgba(210, 170, 100, 0.5);
+}
+
+/* Texto flotante al hacer hover */
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: #fff3e0;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.3rem;
+    padding: 20px 15px 12px;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    border-radius: 0 0 32px 32px;
+    backdrop-filter: blur(2px);
+    letter-spacing: 1px;
+}
+
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+}
+
+/* Cuenta regresiva */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.time {
+    background: linear-gradient(135deg, #fffbf5, #fff6ea);
+    border-radius: 32px;
+    padding: 20px 24px;
+    min-width: 110px;
+    box-shadow: 0 12px 20px rgba(0,0,0,0.05);
+    border-bottom: 3px solid #e5cbaa;
+}
+
+.time span {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #b97f42;
+    font-family: 'Playfair Display', serif;
+}
+
+.whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #25D366;
+    color: white;
+    padding: 14px 36px;
+    border-radius: 60px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: 0.25s;
+    box-shadow: 0 10px 15px -6px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp:hover {
+    transform: translateY(-3px);
+    background: #20b859;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-family: 'Playfair Display', serif;
+    color: #b18b5c;
+    background: #fcf3e7;
+    border-top: 1px solid #e8dccc;
+}
+
+/* Animación para entrada de elementos */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@media (max-width: 650px) {
+    .envelope {
+        width: 90vw;
+        max-width: 360px;
+        height: 240px;
+    }
+    .name {
+        font-size: 2.8rem;
+    }
+    .seal {
+        width: 70px;
+        height: 70px;
+        font-size: 46px;
+    }
+    .gallery-item img {
+        height: 260px;
+    }
+    .gallery-caption {
+        font-size: 1rem;
+        padding: 15px 10px 8px;
+    }
+    .hero h1 {
+        font-size: 2.6rem;
+    }
+}
+</style>
+</head>
+<body>
+
+<div id="welcome">
+    <div class="envelope-container">
+        <h1 class="name">Sofia Nahomi Ordoñez Mejia</h1>
+        <div class="envelope" id="premiumEnvelope" onclick="openInvitation()">
+            <div class="flap"></div>
+            <div class="letter">
+                <h2>✨</h2>
+                <p>Un sueño de mariposa</p>
+            </div>
+            <div class="seal">S</div>
+        </div>
+        <div class="romantic-text">Toca el sobre...</div>
+    </div>
+</div>
+
+<div id="main-content">
+    <section class="hero">
+        <div>
+            <h1>Sofía Nahomi Ordoñez Mejía</h1>
+            <p>✦ Mi Presentación de 3 Años ✦</p>
+            <p style="font-size: 1rem; margin-top: 15px;">"Un corazón de mariposa que ilumina nuestro camino"</p>
+        </div>
+    </section>
+
+    <section style="padding-top: 20px; padding-bottom: 20px;">
+        <div class="music-premium-card">
+            <div class="music-title">🎶 Escucha mi canción 🎶</div>
+            <div class="audio-player-custom">
+                <button class="btn-play-circle" id="playPauseMainBtn">▶</button>
+                <div class="timeline-container">
+                    <span class="current-time" id="currentTime">00:00</span>
+                    <input type="range" id="songSlider" class="song-slider" value="0" step="1">
+                    <span class="duration-time" id="durationTime">00:00</span>
+                </div>
+            </div>
+            <div style="margin-top: 8px; font-size: 0.7rem; color: #c69049; font-family: 'Great Vibes', cursive;">Canción especial para Sofi</div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card">
+            <h2>✦ Estás Invitado ✦</h2>
+            <p>Con profunda alegría y ternura, te invitamos a celebrar la presentación ante Dios y el 3er cumpleaños de nuestra princesa <strong>Sofía Nahomi</strong>.<br>
+            Una tarde mágica llena de mariposas, dulzura y momentos inolvidables.</p>
+            <br>
+            <p><b>📅 Fecha:</b> 11 de Julio de 2026</p>
+            <p><b>🕑 Hora:</b> 2:00 PM</p>
+            <p><b>📍 Lugar:</b> Ejido de San Mateo Mozoquilpan</p>
+        </div>
+    </section>
+
+    <section>
+        <h2 style="font-family:'Great Vibes', cursive; font-size: 2.5rem; color:#c58f4a;">Cuenta Regresiva</h2>
+        <div class="countdown">
+            <div class="time"><span id="days">0</span><p>Días</p></div>
+            <div class="time"><span id="hours">0</span><p>Horas</p></div>
+            <div class="time"><span id="minutes">0</span><p>Minutos</p></div>
+            <div class="time"><span id="seconds">0</span><p>Segundos</p></div>
+        </div>
+    </section>
+
+    <!-- GALERÍA CON MOVIMIENTO: imágenes flotantes, zoom y efecto hover -->
+    <section>
+        <h2 style="font-family:'Great Vibes', cursive; font-size: 2.5rem; color:#c58f4a;">Galería de Recuerdos</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="1.jpeg" alt="Sofi sonrisa">
+                <div class="gallery-caption">Sonrisa de mariposa 🦋</div>
+            </div>
+            <div class="gallery-item">
+                <img src="2.jpeg" alt="Sofi mariposa">
+                <div class="gallery-caption">Alegría sin límites ✨</div>
+            </div>
+            <div class="gallery-item">
+                <img src="3.jpeg" alt="Sofi pastel">
+                <div class="gallery-caption">Dulces 3 años 🎂</div>
+            </div>
+        </div>
+        <p style="margin-top: 32px; font-style: italic; color:#a77c48; font-family: 'Playfair Display';">Cada imagen revive un momento mágico ❤️</p>
+    </section>
+
+    <section>
+        <div class="card">
+            <h2>🦋 Mensaje Especial 🦋</h2>
+            <p>Las mariposas representan alegría, crecimiento y belleza. Hoy celebramos los primeros tres años de vida de nuestra pequeña Sofi, su luz y su amor nos transforman.</p>
+            <br>
+            <p>“Vuela alto, pequeña mariposa, que el mundo es un jardín para ti.”</p>
+        </div>
+    </section>
+
+    <section>
+        <h2 style="font-family:'Great Vibes', cursive; font-size: 2.2rem;">Confirma tu Asistencia</h2>
+        <a class="whatsapp" href="https://wa.me/527297130278?text=Hola,%20confirmo%20mi%20asistencia%20a%20la%20fiesta%20de%20Sofi" target="_blank">
+            📲 Confirmar por WhatsApp
+        </a>
+        <p style="margin-top: 20px; font-size: 0.9rem;">¡Confirma antes del 5 de julio!</p>
+    </section>
+
+    <footer>
+        🦋 Sofía y su familia te esperan con el corazón abierto 🦋<br>
+        San Mateo Mozoquilpan — 11 de Julio 2026
+    </footer>
+</div>
+
+<script>
+    // --- MÚSICA CON REPRODUCTOR ---
+    let audio = null;
+    let isAudioPlaying = false;
+    let playBtn = document.getElementById('playPauseMainBtn');
+    let songSlider = document.getElementById('songSlider');
+    let currentTimeSpan = document.getElementById('currentTime');
+    let durationSpan = document.getElementById('durationTime');
+
+    function formatTime(sec) {
+        if (isNaN(sec)) return '00:00';
+        const minutes = Math.floor(sec / 60);
+        const seconds = Math.floor(sec % 60);
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    function initMusicPlayer() {
+        if (audio) return;
+        audio = new Audio('Coldplay.mp3');
+        audio.loop = false;
+        audio.preload = 'auto';
+        
+        audio.addEventListener('loadedmetadata', () => {
+            if (songSlider) {
+                songSlider.max = audio.duration;
+                durationSpan.innerText = formatTime(audio.duration);
+                songSlider.style.background = `linear-gradient(90deg, #e2bc82 0%, #eeddc5 0%)`;
+            }
+        });
+        
+        audio.addEventListener('timeupdate', () => {
+            if (songSlider && !isNaN(audio.duration)) {
+                songSlider.value = audio.currentTime;
+                currentTimeSpan.innerText = formatTime(audio.currentTime);
+                let percent = (audio.currentTime / audio.duration) * 100;
+                songSlider.style.background = `linear-gradient(90deg, #e2bc82 ${percent}%, #eeddc5 ${percent}%)`;
+            }
+        });
+        
+        audio.addEventListener('ended', () => {
+            isAudioPlaying = false;
+            if (playBtn) playBtn.innerHTML = '▶';
+            if (songSlider) songSlider.value = 0;
+            currentTimeSpan.innerText = '00:00';
+        });
+        
+        if (songSlider) {
+            songSlider.addEventListener('input', (e) => {
+                if (audio) {
+                    audio.currentTime = e.target.value;
+                    let percent = (audio.currentTime / audio.duration) * 100;
+                    songSlider.style.background = `linear-gradient(90deg, #e2bc82 ${percent}%, #eeddc5 ${percent}%)`;
+                }
+            });
+        }
+    }
+    
+    function togglePlayMusic() {
+        if (!audio) {
+            initMusicPlayer();
+            if (!audio) return;
+        }
+        if (audio.paused) {
+            audio.play().then(() => {
+                isAudioPlaying = true;
+                if (playBtn) playBtn.innerHTML = '⏸';
+            }).catch(err => {
+                console.warn("Error al reproducir: ", err);
+                isAudioPlaying = false;
+                if (playBtn) playBtn.innerHTML = '▶';
+            });
+        } else {
+            audio.pause();
+            isAudioPlaying = false;
+            if (playBtn) playBtn.innerHTML = '▶';
+        }
+    }
+    
+    if (playBtn) {
+        playBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            togglePlayMusic();
+        });
+    }
+    
+    function openInvitation() {
+        const envelopeDiv = document.getElementById('premiumEnvelope');
+        if (envelopeDiv.classList.contains('open')) return;
+        envelopeDiv.classList.add('open');
+        
+        if (!audio) {
+            initMusicPlayer();
+        }
+        
+        setTimeout(() => {
+            const welcomeScreen = document.getElementById('welcome');
+            const mainContent = document.getElementById('main-content');
+            if (welcomeScreen && mainContent) {
+                welcomeScreen.style.opacity = '0';
+                welcomeScreen.style.transition = 'opacity 0.8s ease';
+                setTimeout(() => {
+                    welcomeScreen.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    document.body.style.overflow = 'auto';
+                    mainContent.style.animation = 'fadeInUp 0.7s ease-out';
+                    // Añadir clase fade-in a elementos de galería para que aparezcan suavemente
+                    const items = document.querySelectorAll('.gallery-item');
+                    items.forEach((item, idx) => {
+                        item.style.opacity = '0';
+                        item.style.animation = 'none';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.animation = `floatGallery ${4 + idx * 0.4}s ease-in-out infinite`;
+                            item.style.animationDelay = `${idx * 0.2}s`;
+                        }, 100 + idx * 80);
+                    });
+                }, 400);
+            }
+        }, 1600);
+    }
+    
+    const targetDate = new Date("July 11, 2026 14:00:00 GMT-0600").getTime();
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+        if (distance < 0) {
+            document.getElementById("days").innerHTML = "0";
+            document.getElementById("hours").innerHTML = "0";
+            document.getElementById("minutes").innerHTML = "0";
+            document.getElementById("seconds").innerHTML = "0";
+            return;
+        }
+        document.getElementById("days").innerHTML = Math.floor(distance / (1000*60*60*24));
+        document.getElementById("hours").innerHTML = Math.floor((distance % (86400000)) / (3600000));
+        document.getElementById("minutes").innerHTML = Math.floor((distance % 3600000) / 60000);
+        document.getElementById("seconds").innerHTML = Math.floor((distance % 60000) / 1000);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    window.openInvitation = openInvitation;
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!audio) initMusicPlayer();
+        const styleAnim = document.createElement('style');
+        styleAnim.textContent = `@keyframes fadeInUp { 0% { opacity: 0; transform: translateY(25px); } 100% { opacity: 1; transform: translateY(0); } }`;
+        document.head.appendChild(styleAnim);
+    });
+</script>
+</body>
+</html>
