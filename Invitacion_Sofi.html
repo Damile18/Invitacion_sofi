@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Invitación Premium | Sofia Nahomi Ordoñez Mejía</title>
+<!-- Google Fonts: Romántica + Elegante -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #fef7f0;
+    font-family: 'Poppins', sans-serif;
+    color: #4a3b2c;
+    overflow-x: hidden;
+}
+
+/* PANTALLA INICIAL - SOBRE CENTRADO PERFECTO */
+#welcome {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 20% 30%, #fef9f2, #f5ede2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(2px);
+}
+
+.envelope-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.2rem;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #e8bc7e, #d4a06a, #c28a4a);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.envelope {
+    width: 420px;
+    height: 280px;
+    position: relative;
+    cursor: pointer;
+    background: linear-gradient(115deg, #f8f0e4 0%, #ecdbba 45%, #f5e8d6 100%);
+    border-radius: 22px;
+    box-shadow: 0 35px 50px -20px rgba(0,0,0,0.35), 0 0 0 1px rgba(209,169,96,0.4) inset, 0 0 0 3px rgba(255,245,225,0.7) inset;
+    transition: transform 0.35s ease;
+}
+
+.envelope:hover { transform: scale(1.02); }
+
+.flap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(125deg, #f5ebdd, #ebddcb, #f4e5d3);
+    clip-path: polygon(0 0, 100% 0, 50% 52%);
+    border-radius: 22px 22px 0 0;
+    transform-origin: top;
+    transition: transform 1.2s cubic-bezier(0.23,1,0.32,1);
+    z-index: 6;
+}
+
+.letter {
+    position: absolute;
+    width: 92%;
+    height: 88%;
+    background: #fffcf7;
+    bottom: 5%;
+    left: 4%;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 1px 8px rgba(0,0,0,0.02), 0 10px 20px rgba(0,0,0,0.1);
+    border: 1px solid #eeddc5;
+}
+
+.letter h2 {
+    font-size: 2.4rem;
+    color: #bf8f50;
+    font-family: 'Great Vibes', cursive;
+}
+
+.letter p {
+    font-size: 1rem;
+    color: #9b7b56;
+    font-style: italic;
+}
+
+.seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #efc67a, #c28a3e, #9b632c);
+    box-shadow: 0 12px 22px rgba(0,0,0,0.3), 0 0 0 6px rgba(255,235,190,0.7), 0 0 0 9px rgba(175,125,55,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 60px;
+    color: #fff5e2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    z-index: 15;
+    transition: all 0.4s ease;
+}
+
+.seal::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 45%, rgba(255,215,130,0.5) 2%, transparent 70%);
+    pointer-events: none;
+}
+
+.romantic-text {
+    margin-top: 28px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.7rem;
+    color: #c7924e;
+    background: rgba(245,235,220,0.6);
+    padding: 6px 22px;
+    border-radius: 60px;
+    display: inline-block;
+}
+
+.envelope.open .flap { transform: rotateX(180deg); }
+.envelope.open .seal { opacity: 0; transform: translate(-50%, -50%) scale(0.5); transition: opacity 0.5s ease, transform 0.6s ease; pointer-events: none; }
+
+#main-content {
+    background: #fef8f0;
+    display: none;
+}
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(145deg, #fcf5ea 20%, #f6ecdf);
+    text-align: center;
+    border-bottom: 1px solid #e9d9c6;
+}
+
+.hero h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    color: #bc8750;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    font-family: 'Playfair Display', serif;
+    color: #977b54;
+    letter-spacing: 2px;
+}
+
+section {
+    padding: 70px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #fffcf7;
+    border-radius: 48px;
+    padding: 45px 35px;
+    max-width: 780px;
+    margin: 0 auto;
+    box-shadow: 0 25px 45px -12px rgba(67,44,18,0.15);
+    border: 1px solid #eedbba;
+}
+
+.card h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.6rem;
+    color: #bf8a4b;
+    margin-bottom: 25px;
+}
+
+/* ========== CUADRO DE ORACIÓN ========== */
+.prayer-card {
+    background: linear-gradient(145deg, #fff9f0, #fff4e8);
+    border-radius: 48px;
+    padding: 50px 40px;
+    max-width: 750px;
+    margin: 0 auto;
+    box-shadow: 0 20px 40px -12px rgba(67,44,18,0.15);
+    border: 1px solid #eedbba;
+    text-align: center;
+}
+
+.golden-cross {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.cross-svg {
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+}
+
+.prayer-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #8b6b3d;
+    line-height: 1.8;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.prayer-line {
+    display: block;
+    margin: 6px 0;
+}
+
+.prayer-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4a87a, #c28a4a, #d4a87a, transparent);
+    margin: 20px auto 25px auto;
+}
+
+.prayer-row {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.prayer-col {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+.prayer-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #b8860b;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.prayer-names {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #6b4c2c;
+    font-style: italic;
+}
+
+.prayer-names strong {
+    color: #b97f42;
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* Estilo para las tarjetas de Misa y Recepción */
+.event-card {
+    background: #fdf7ef;
+    border-radius: 28px;
+    padding: 18px 22px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid #eeddc5;
+    text-align: left;
+    transition: transform 0.2s ease;
+}
+
+.event-card:hover { transform: translateY(-3px); }
+
+.event-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.event-icon { font-size: 2rem; }
+.event-title {
+    color: #bf8a4b;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.9rem;
+    margin: 0;
+}
+
+.event-detail {
+    font-size: 1rem;
+    margin: 8px 0;
+    color: #4a3b2c;
+}
+.event-detail strong { color: #b97f42; }
+.event-place {
+    font-size: 0.95rem;
+    color: #7a5a3a;
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+.fecha-dorada {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    color: #bf8a4b;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.mensaje-dorado {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem;
+    color: #c28a44;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* TÍTULO "CONFIRMA TU ASISTENCIA" EN LETRA DORADA Y CURSIVA (SIN NEGRITA) */
+.titulo-dorado {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    color: #c28a44;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    font-weight: normal; /* Se eliminó la negrita */
+}
+
+/* REPRODUCTOR DE MÚSICA - DISEÑO RESPONSIVE PARA CELULAR */
+.music-premium-card {
+    background: linear-gradient(145deg, #fff9f0, #fff4e8);
+    border-radius: 70px;
+    padding: 20px 20px;
+    max-width: 480px;
+    width: 90%;
+    margin: 30px auto 20px;
+    box-shadow: 0 15px 35px rgba(158,110,48,0.12);
+    border: 1px solid #f3e2ca;
+    text-align: center;
+}
+
+.music-premium-card .music-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem; /* Ligeramente más pequeño en móvil */
+    background: linear-gradient(135deg, #dcb072, #c28a44);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 15px;
+    display: inline-block;
+    font-weight: normal; /* Se eliminó la negrita */
+}
+
+.audio-player-custom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: #ffffffc9;
+    padding: 6px 15px;
+    border-radius: 60px;
+    border: 1px solid #eed8bc;
+    flex-wrap: nowrap; /* Evita que se rompa en varias líneas */
+}
+
+.btn-play-circle {
+    background: linear-gradient(145deg, #e9c48b, #d9a857);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    font-size: 1.4rem;
+    flex-shrink: 0; /* Evita que el botón se encoja */
+}
+
+.timeline-container { 
+    flex: 1; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    min-width: 0; /* Permite que el slider se encoja correctamente */
+}
+
+input[type="range"].song-slider { 
+    flex: 1; 
+    height: 4px; 
+    -webkit-appearance: none; 
+    background: #eeddc5; 
+    border-radius: 10px;
+    min-width: 0; /* Permite reducir su ancho */
+}
+input[type="range"].song-slider::-webkit-slider-thumb { 
+    -webkit-appearance: none; 
+    width: 14px; 
+    height: 14px; 
+    background: #d9a457; 
+    border-radius: 50%; 
+    cursor: pointer; 
+}
+.current-time, .duration-time { 
+    font-size: 0.7rem; 
+    color: #b47c3c; 
+    white-space: nowrap; /* Evita que los tiempos se partan */
+}
+
+/* GALERÍA */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    max-width: 1100px;
+    margin: 40px auto 0;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 32px;
+    box-shadow: 0 20px 30px -12px rgba(0,0,0,0.25);
+    cursor: pointer;
+    animation: floatGallery 5s ease-in-out infinite;
+}
+@keyframes floatGallery {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+.gallery-item:nth-child(1) { animation-duration: 4.2s; }
+.gallery-item:nth-child(2) { animation-duration: 5s; }
+.gallery-item:nth-child(3) { animation-duration: 4.6s; }
+.gallery-item:hover { transform: scale(1.03) translateY(-8px); animation-play-state: paused; }
+.gallery-item img { width: 100%; height: 320px; object-fit: cover; border-radius: 32px; transition: transform 0.6s ease; }
+.gallery-item:hover img { transform: scale(1.08); }
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: #fff3e0;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.3rem;
+    padding: 20px 15px 12px;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+.gallery-item:hover .gallery-caption { transform: translateY(0); }
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.time {
+    background: linear-gradient(135deg, #fffbf5, #fff6ea);
+    border-radius: 32px;
+    padding: 20px 24px;
+    min-width: 110px;
+    border-bottom: 3px solid #e5cbaa;
+}
+.time span {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #b97f42;
+    font-family: 'Playfair Display', serif;
+}
+
+.whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #25D366;
+    color: white;
+    padding: 14px 36px;
+    border-radius: 60px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+.whatsapp:hover { transform: translateY(-3px); background: #20b859; }
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-family: 'Playfair Display', serif;
+    color: #b18b5c;
+    background: #fcf3e7;
+    border-top: 1px solid #e8dccc;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* MEJORAS RESPONSIVE PARA CELULAR */
+@media (max-width: 650px) {
+    .envelope { width: 90vw; max-width: 360px; height: 240px; }
+    .name { font-size: 2.8rem; }
+    .seal { width: 70px; height: 70px; font-size: 46px; }
+    .gallery-item img { height: 260px; }
+    .hero h1 { font-size: 2.6rem; }
+    .event-title { font-size: 1.5rem; }
+    .prayer-text { font-size: 1rem; }
+    .prayer-label { font-size: 1rem; }
+    .prayer-names { font-size: 0.85rem; }
+    .prayer-card { padding: 30px 20px; }
+    .prayer-row { gap: 20px; }
+    .cross-svg { width: 45px; height: 45px; }
+    .titulo-dorado { font-size: 1.8rem; }
+    
+    /* Ajustes específicos para el reproductor en móvil */
+    .music-premium-card {
+        padding: 15px 15px;
+        width: 95%;
+    }
+    .music-premium-card .music-title {
+        font-size: 1.5rem;
+    }
+    .audio-player-custom {
+        gap: 8px;
+        padding: 5px 12px;
+    }
+    .btn-play-circle {
+        width: 38px;
+        height: 38px;
+        font-size: 1.2rem;
+    }
+    .current-time, .duration-time {
+        font-size: 0.65rem;
+    }
+    .timeline-container {
+        gap: 5px;
+    }
+}
+
+/* Ajuste adicional para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .audio-player-custom {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+    }
+    .timeline-container {
+        width: 100%;
+        order: 1;
+    }
+    .btn-play-circle {
+        order: 0;
+    }
+    .current-time, .duration-time {
+        font-size: 0.7rem;
+    }
+}
+</style>
+</head>
+<body>
+
+<div id="welcome">
+    <div class="envelope-container">
+        <h1 class="name">Sofia Nahomi Ordoñez Mejía</h1>
+        <div class="envelope" id="premiumEnvelope" onclick="openInvitation()">
+            <div class="flap"></div>
+            <div class="letter">
+                <h2> <svg width="60" height="45" viewBox="0 0 100 80" fill="none" stroke="#c28a44" stroke-width="1.2">
+    <defs>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1" result="blur"/>
+            <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <!-- Alas superiores -->
+    <path d="M50 38 Q22 12 10 25 Q5 35 20 45 Q35 52 48 42" fill="none" filter="url(#glow)"/>
+    <path d="M50 38 Q78 12 90 25 Q95 35 80 45 Q65 52 52 42" fill="none" filter="url(#glow)"/>
+    <!-- Detalles internos alas superiores -->
+    <path d="M40 32 Q28 22 20 30" fill="none" stroke-width="0.8" opacity="0.6"/>
+    <path d="M60 32 Q72 22 80 30" fill="none" stroke-width="0.8" opacity="0.6"/>
+    <!-- Alas inferiores -->
+    <path d="M48 42 Q25 58 18 68 Q15 76 30 74 Q42 70 50 55" fill="none"/>
+    <path d="M52 42 Q75 58 82 68 Q85 76 70 74 Q58 70 50 55" fill="none"/>
+    <!-- Cuerpo -->
+    <ellipse cx="50" cy="48" rx="3" ry="20" fill="#c28a44" opacity="0.5"/>
+    <!-- Antenas -->
+    <path d="M49 30 Q40 16 35 10" fill="none"/>
+    <path d="M51 30 Q60 16 65 10" fill="none"/>
+    <circle cx="35" cy="10" r="3" fill="#f0d28c" stroke="#c28a44" stroke-width="0.8"/>
+    <circle cx="65" cy="10" r="3" fill="#f0d28c" stroke="#c28a44" stroke-width="0.8"/>
+    <!-- Perlas/brillos -->
+    <circle cx="18" cy="32" r="2.5" fill="#fdf4df" stroke="none"/>
+    <circle cx="82" cy="32" r="2.5" fill="#fdf4df" stroke="none"/>
+    <circle cx="50" cy="65" r="2" fill="#fdf4df" stroke="none"/>
+</svg> </h2>
+                <p>¡Con amor, para un día inolvidable!</p>
+            </div>
+            <div class="seal">S</div>
+        </div>
+        <div class="romantic-text">Toca el sobre...</div>
+    </div>
+</div>
+
+<div id="main-content">
+    <section class="hero">
+        <div>
+            <h1>Sofía Nahomi Ordoñez Mejía</h1>
+            <p>✦ Mi Presentación de 3 Años ✦</p>
+            <p style="font-size: 1rem; margin-top: 15px;">"Un corazón de mariposa que ilumina nuestro camino"</p>
+        </div>
+    </section>
+
+    <section style="padding-top: 20px; padding-bottom: 20px;">
+        <div class="music-premium-card">
+            <div class="music-title">🎶 Escucha mi canción 🎶</div>
+            <div class="audio-player-custom">
+                <button class="btn-play-circle" id="playPauseMainBtn">▶</button>
+                <div class="timeline-container">
+                    <span class="current-time" id="currentTime">00:00</span>
+                    <input type="range" id="songSlider" class="song-slider" value="0" step="1">
+                    <span class="duration-time" id="durationTime">00:00</span>
+                </div>
+            </div>
+            <div style="margin-top: 8px; font-size: 0.7rem; color: #c69049; font-family: 'Great Vibes', cursive;">Canción especial para Sofi</div>
+        </div>
+    </section>
+
+    <!-- CUADRO DE ORACIÓN -->
+    <section>
+        <div class="prayer-card">
+            <div class="golden-cross">
+                <svg class="cross-svg" width="55" height="55" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="crossGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e8bc7e"/>
+                            <stop offset="30%" style="stop-color:#d4a06a"/>
+                            <stop offset="60%" style="stop-color:#f0d28c"/>
+                            <stop offset="100%" style="stop-color:#c28a4a"/>
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <rect x="42" y="10" width="16" height="55" rx="3" fill="url(#crossGradient)" filter="url(#glow)"/>
+                    <rect x="25" y="32" width="50" height="16" rx="3" fill="url(#crossGradient)" filter="url(#glow)"/>
+                    <circle cx="50" cy="50" r="5" fill="#fff5e2" opacity="0.5"/>
+                </svg>
+            </div>
+
+            <div class="prayer-text">
+                <span class="prayer-line">SEÑOR HOY</span>
+                <span class="prayer-line">ME PRESENTAN ANTE TI,</span>
+                <span class="prayer-line">TOMA MI PEQUEÑO CORAZÓN</span>
+                <span class="prayer-line">EN TUS BENDITAS MANOS</span>
+                <span class="prayer-line">Y NUNCA TE APARTES DE MI.</span>
+            </div>
+
+            <div class="prayer-divider"></div>
+
+            <div class="prayer-row">
+                <div class="prayer-col">
+                    <div class="prayer-label">MIS PAPÁS</div>
+                    <div class="prayer-names">
+                        <strong>Guillermo Ordoñez Villafranco</strong>
+                         & <strong>Maricela Mejía Ballesteros</strong>
+                    </div>
+                </div>
+                <div class="prayer-col">
+                    <div class="prayer-label">MI MADRINA</div>
+                    <div class="prayer-names">
+                        <strong>Erika Mejía Ballesteros</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE MISAS Y RECEPCIÓN -->
+    <section>
+        <div class="card">
+            <h2>✦ Estás Invitado ✦</h2>
+            <p>Con profunda alegría y ternura, te invitamos a celebrar la presentación ante Dios y el 3er cumpleaños de nuestra princesa <strong>Sofía Nahomi Ordoñez Mejía</strong>.</p>
+            <br>
+            <div style="display: flex; flex-direction: column; gap: 25px; margin-top: 15px;">
+                <div class="event-card">
+                    <div class="event-header">
+                        <h3 class="event-title">Misa</h3>
+                    </div>
+                    <p class="event-detail"><strong>Hora:</strong> 10:00 AM</p>
+                    <p class="event-place"><strong>Lugar:</strong> “Parroquia de San Bartolomé Apóstol”<br>San Mateo Mozoquilpan</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-header">
+                        <h3 class="event-title">Recepción</h3>
+                    </div>
+                    <p class="event-detail"><strong>Hora:</strong> 02:00 PM</p>
+                    <p class="event-place"><strong>Lugar:</strong> “Ejido de Santa Maria Tetitla”<br>San Mateo Mozoquilpan</p>
+                </div>
+            </div>
+            <div class="fecha-dorada"> Fecha: 11 de Julio de 2026</div>
+            <div class="mensaje-dorado"> “Te esperamos para compartir este día tan especial” </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 style="font-family:'Great Vibes', cursive; font-size: 2.5rem; color:#c58f4a;">Cuenta Regresiva</h2>
+        <div class="countdown">
+            <div class="time"><span id="days">0</span><p>Días</p></div>
+            <div class="time"><span id="hours">0</span><p>Horas</p></div>
+            <div class="time"><span id="minutes">0</span><p>Minutos</p></div>
+            <div class="time"><span id="seconds">0</span><p>Segundos</p></div>
+        </div>
+    </section>
+
+    <section>
+        <h2 style="font-family:'Great Vibes', cursive; font-size: 2.5rem; color:#c58f4a;">Galería de Recuerdos</h2>
+        <div class="gallery">
+            <div class="gallery-item"><img src="1.jpeg" alt="Sofi"><div class="gallery-caption">Una fiesta tan bonita como ella. 🦋</div></div>
+            <div class="gallery-item"><img src="2.jpeg" alt="Sofi"><div class="gallery-caption">Hoy brilla nuestra estrella favorita. ⭐</div></div>
+            <div class="gallery-item"><img src="3.jpeg" alt="Sofi"><div class="gallery-caption">Nuestra princesa cumple años. 👑</div></div>
+        </div>
+        <p style="margin-top: 32px; font-style: italic; color:#a77c48; font-family: 'Playfair Display';">Cada imagen revive un momento mágico ❤️</p>
+    </section>
+
+    <section>
+        <div class="card">
+            <h2> Mensaje  Especial </h2>
+            <p>Las mariposas representan alegría, crecimiento y belleza. Hoy celebramos los primeros tres años de vida de nuestra pequeña Sofi, su luz y su amor nos transforman.</p>
+            <br>
+            <p>“Vuela alto, pequeña mariposa, que el mundo es un jardín para ti.”</p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN CONFIRMA TU ASISTENCIA - TÍTULO EN LETRA DORADA (SIN NEGRITA) -->
+    <section>
+        <div class="titulo-dorado">Confirma tu Asistencia</div>
+        <a class="whatsapp" href="https://wa.me/527291204300?text=Hola,%20confirmo%20mi%20asistencia%20a%20la%20fiesta%20de%20Sofi" target="_blank">📲 Confirmar por WhatsApp</a>
+        <p style="margin-top: 20px; font-size: 0.9rem;">¡Confirma antes del 5 de julio!</p>
+    </section>
+
+    <footer>🦋 ¡Sofía y su familia te esperan con el corazón abierto! 🦋<br>Ejido de Santa Maria Tetitla — 11 de Julio 2026</footer>
+</div>
+
+<script>
+    let audio = null;
+    let playBtn = document.getElementById('playPauseMainBtn');
+    let songSlider = document.getElementById('songSlider');
+    let currentTimeSpan = document.getElementById('currentTime');
+    let durationSpan = document.getElementById('durationTime');
+
+    function formatTime(sec) {
+        if (isNaN(sec)) return '00:00';
+        let minutes = Math.floor(sec / 60);
+        let seconds = Math.floor(sec % 60);
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    function initMusicPlayer() {
+        if (audio) return;
+        audio = new Audio('Coldplay.mp3');
+        audio.loop = false;
+        audio.preload = 'auto';
+        audio.addEventListener('loadedmetadata', () => {
+            if (songSlider) {
+                songSlider.max = audio.duration;
+                durationSpan.innerText = formatTime(audio.duration);
+                songSlider.style.background = `linear-gradient(90deg, #e2bc82 0%, #eeddc5 0%)`;
+            }
+        });
+        audio.addEventListener('timeupdate', () => {
+            if (songSlider && !isNaN(audio.duration)) {
+                songSlider.value = audio.currentTime;
+                currentTimeSpan.innerText = formatTime(audio.currentTime);
+                let percent = (audio.currentTime / audio.duration) * 100;
+                songSlider.style.background = `linear-gradient(90deg, #e2bc82 ${percent}%, #eeddc5 ${percent}%)`;
+            }
+        });
+        audio.addEventListener('ended', () => {
+            if (playBtn) playBtn.innerHTML = '▶';
+            if (songSlider) songSlider.value = 0;
+            currentTimeSpan.innerText = '00:00';
+        });
+        if (songSlider) {
+            songSlider.addEventListener('input', (e) => {
+                if (audio) {
+                    audio.currentTime = e.target.value;
+                    let percent = (audio.currentTime / audio.duration) * 100;
+                    songSlider.style.background = `linear-gradient(90deg, #e2bc82 ${percent}%, #eeddc5 ${percent}%)`;
+                }
+            });
+        }
+    }
+    
+    function togglePlayMusic() {
+        if (!audio) { initMusicPlayer(); if (!audio) return; }
+        if (audio.paused) {
+            audio.play().then(() => { if (playBtn) playBtn.innerHTML = '⏸'; });
+        } else {
+            audio.pause();
+            if (playBtn) playBtn.innerHTML = '▶';
+        }
+    }
+    
+    if (playBtn) { playBtn.addEventListener('click', togglePlayMusic); }
+    
+    function openInvitation() {
+        let envelopeDiv = document.getElementById('premiumEnvelope');
+        if (envelopeDiv.classList.contains('open')) return;
+        envelopeDiv.classList.add('open');
+        if (!audio) { initMusicPlayer(); }
+        setTimeout(() => {
+            let welcomeScreen = document.getElementById('welcome');
+            let mainContent = document.getElementById('main-content');
+            if (welcomeScreen && mainContent) {
+                welcomeScreen.style.opacity = '0';
+                welcomeScreen.style.transition = 'opacity 0.8s ease';
+                setTimeout(() => {
+                    welcomeScreen.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    document.body.style.overflow = 'auto';
+                    mainContent.style.animation = 'fadeInUp 0.7s ease-out';
+                }, 400);
+            }
+        }, 1600);
+    }
+    
+    let targetDate = new Date("July 11, 2026 14:00:00 GMT-0600").getTime();
+    function updateCountdown() {
+        let now = new Date().getTime();
+        let distance = targetDate - now;
+        if (distance < 0) {
+            document.getElementById("days").innerHTML = "0";
+            document.getElementById("hours").innerHTML = "0";
+            document.getElementById("minutes").innerHTML = "0";
+            document.getElementById("seconds").innerHTML = "0";
+            return;
+        }
+        document.getElementById("days").innerHTML = Math.floor(distance / (1000*60*60*24));
+        document.getElementById("hours").innerHTML = Math.floor((distance % (86400000)) / (3600000));
+        document.getElementById("minutes").innerHTML = Math.floor((distance % 3600000) / 60000);
+        document.getElementById("seconds").innerHTML = Math.floor((distance % 60000) / 1000);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    window.openInvitation = openInvitation;
+</script>
+</body>
+</html>
